@@ -1,0 +1,58 @@
+
+    <div class="h-full ml-14 mt-20 mb-10 md:ml-64">
+<div class="mt-4 mx-4">
+    <div class="" >
+        <h1 class="text-4xl font-bold font-monospace"> Users</h1>
+        <div class="d-flex justify-content-end p-2">
+          <div class="bg-darf rounded flex items-center w-full max-w-xl mr-4 p-2 shadow-sm border border-gray-200">
+            <button class="outline-none focus:outline-none">
+              <svg class="w-5 text-gray-600 h-5 cursor-pointer" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+            </button>
+            <input type="search" [(ngModel)]="search" (keyup)="search_input()"   placeholder="Search" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
+          </div>
+          <button class="btn btn-primary" routerLink="/Admin/user-form">Add User</button>
+        </div>      
+    </div>
+
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full">
+
+          <thead>
+            <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
+              <th class="px-4 py-3">Sr.No</th>
+              <th class="px-4 py-3">Name</th>
+              <th class="px-4 py-3">City</th>
+              <th class="px-4 py-3">State</th>
+              <th class="px-4 py-3">Password</th>
+              <th class="px-4 py-3">Zip</th>
+              <th class="px-4 py-3">Action</th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+            <tr *ngFor="let item of userList | searchUser : search ; let i = index" class="bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-900 text-gray-700 dark:text-gray-400">
+              <td class="px-4 py-3">
+               <p>{{i + 1}}</p>
+              </td> 
+              <td class="px-4 py-3 text-sm">{{item.firstName +' '+ item.lastName}}</td>
+              <td class="px-4 py-3 text-sm">
+                {{item.city}}
+              </td>
+              <td class="px-4 py-3 text-sm">{{item.state}}</td>
+              <td class="px-4 py-3 text-sm">{{item.password}}</td>
+              <td class="px-4 py-3 text-sm">{{item.zip}}</td>
+              <td class="p-4 px-3 d-flex"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" routerLink="/Admin/user-form" [queryParams]="{id:item._id}" >Edit</button>
+                <button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="remove_user(item._id)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+     
+    </div>
+  </div>
+    </div>
+  
+    
+   
+
+
