@@ -8,8 +8,8 @@ import { UserdataType } from '../../app/data-type/UserdataType';
 })
 export class AuthServiceService {
    public eventememiter = new EventEmitter<boolean>(false)
-
-  public API :string = 'http://localhost:4000/create_user_account'
+ 
+  // public API :string = 'http://localhost:4000/create_user_account'
   constructor(private http :HttpClient , private router : Router) { }
 
 
@@ -21,7 +21,7 @@ export class AuthServiceService {
   }
 
   getToken(): string | null {
-    return localStorage.getItem('token');
+    return   localStorage.getItem('token');
   }
 
   isLoggedIn() {
@@ -34,13 +34,12 @@ export class AuthServiceService {
     this.router.navigate(['login']);
   }
 
-
   Create_Account(body:UserdataType){
-    return this.http.post( this.API, body , {observe:'response'})
+    return this.http.post( 'http://localhost:4000/auth/signup/', body , {observe:'response'})
 }
 
-  login(user_data:{Email:string, password:string}){  
- return  this.http.get(`http://localhost:4000/get_user_account/${user_data.Email}/${user_data.password} `, {observe:'response'})
+  login(user_data:{email:string, password:string}){  
+ return  this.http.post('http://localhost:4000/auth/login/', user_data , {observe:'response'})
 
   }
 

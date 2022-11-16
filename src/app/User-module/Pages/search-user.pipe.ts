@@ -12,7 +12,7 @@ export class SearchUserPipe implements PipeTransform {
       }
       else{
       return value.filter((res:any)=>{
-         return JSON.stringify(res.firstName).includes(string.toLowerCase())
+         return JSON.stringify(res.firstName.toLowerCase()).includes(string.toLowerCase())
         })
       }
   }

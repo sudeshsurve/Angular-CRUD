@@ -14,3 +14,10 @@ export interface User{
     zip:string,
     _id?:string
 }
+
+export class UserData {
+	constructor(
+	public primaryAddress: string,
+	public secondaryAddress: string
+	){}
+}

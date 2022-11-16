@@ -8,6 +8,10 @@ import { AdminComponent } from "../Pages/admin/admin.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CanDeactivateGuard } from 'src/app/guards/can-deactivate.guard';
 import { SearchUserPipe } from "../Pages/search-user.pipe";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from 'src/app/authotication-component/Interceptor/http-error.interceptor';
+import { ContactUsComponent } from '../Pages/contact-us/contact-us.component';
+
 
 @NgModule({
   declarations: [
@@ -16,15 +20,21 @@ import { SearchUserPipe } from "../Pages/search-user.pipe";
     UserListComponent,
     AdminComponent,
     SearchUserPipe,
+    ContactUsComponent,
   ],
   imports: [
     CommonModule,
     UserModuleRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers:[
-    CanDeactivateGuard
+    // {provide:HTTP_INTERCEPTORS,
+    //   useClass :HttpErrorInterceptor,
+    //   multi:true,
+    // },
+    CanDeactivateGuard,
   ]
 })
 export class UserModuleModule { }

@@ -10,7 +10,7 @@
             <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
               
                 <form #UserForm="ngForm"  (ngSubmit)="User_Submit()"  class="w-full max-w-lg card p-3 mt-5">
-                  <div *ngIf="success_msg" class=" bg-green-100 rounded-md p-2 flex">
+                  <div *ngIf="success_msg" class=" bg-green-100 rounded-md p-1 flex">
                     <svg
                         class="stroke-2 stroke-current text-green-600 h-8 w-8 mr-2 flex-shrink-0"
                         viewBox="0 0 24 24"
@@ -29,7 +29,7 @@
                         <!-- <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis sollicitudin dui vel gravida. Fusce faucibus, elit sit amet porttitor vehicula, urna nisi dapibus tellus, a tincidunt velit mi quis nulla.</div> -->
                     </div>
                 </div>
-                <div *ngIf="update_msg" class=" bg-blue-100 rounded-md p-2 flex">
+                <div *ngIf="update_msg" class=" bg-blue-100 rounded-md p-1 flex">
                   <svg
                       class="stroke-2 stroke-current text-blue-600 h-8 w-8 mr-2 flex-shrink-0"
                       viewBox="0 0 24 24"
@@ -48,6 +48,26 @@
                       <!-- <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis sollicitudin dui vel gravida. Fusce faucibus, elit sit amet porttitor vehicula, urna nisi dapibus tellus, a tincidunt velit mi quis nulla.</div> -->
                   </div>
               </div>
+
+              <div *ngIf="error_msg"  class=" bg-red-100 rounded-md p-1 flex">
+                <svg
+                    class="stroke-2 stroke-current text-red-600 h-8 w-8 mr-2 flex-shrink-0"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                >
+                    <path d="M0 0h24v24H0z" stroke="none" />
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M9 12l2 2 4-4" />
+                </svg>
+            
+                <div class="text-red-700">
+                    <div class="font-bold text-xl">All input field required</div>
+            
+                    <!-- <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis sollicitudin dui vel gravida. Fusce faucibus, elit sit amet porttitor vehicula, urna nisi dapibus tellus, a tincidunt velit mi quis nulla.</div> -->
+                </div>
+            </div>
                     <p class="text-3xl text-center font-bold p-4">User Form</p>
                     <div class="flex flex-wrap -mx-3 mb-6">
                       <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -103,7 +123,7 @@
                       </div>
                     </div> 
                    
-                <button [disabled]="UserForm.invalid"   type="submit" class="inline-block w-full px-6 py-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-3">{{obj.id?'Update':'Submit'}}</button>        
+                <button    type="submit" class="inline-block w-full px-6 py-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-3">{{obj.id?'Update':'Submit'}}</button>        
                   </form>
             </div>
         </div>

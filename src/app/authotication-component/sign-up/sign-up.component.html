@@ -3,43 +3,44 @@
 
 <div class="bg-grey-lighter min-h-screen flex flex-col">
     <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-        <form #User_Form="ngForm" (ngSubmit)="User_Signup(User_Form.value)" >
-            
-        
+        <form [formGroup]="registerForm"  (ngSubmit)="onSubmit(registerForm.value)">
         <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
             <h1 class="mb-8 text-3xl text-center">Sign up</h1>
-            <span *ngIf="fullname.touched && fullname.invalid">*Name Is required</span>
+            <!-- <span *ngIf="fullname.touched && fullname.invalid">*Name Is required</span> -->
+            <div *ngIf="submitted && registerForm.controls.fullName.errors">
+                <span *ngIf="submitted && registerForm.controls.fullName.errors.required">*Name is Requried</span>
+           </div>
             <input 
                 type="text"
-                class="block border border-grey-light w-full p-3 rounded mb-4"
-                name="fullname"
-                required
-                ngModel
-                #fullname="ngModel"
-                placeholder="Full Name" />
-                
-                <span *ngIf="email.touched && email.invalid">*Email Is required</span>
+                class="form-control mb-4"
+                formControlName="fullName"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls.fullName.errors }"
+                placeholder="Full Name" />            
+                <!-- <span *ngIf="email.touched && email.invalid">{{email.touched?"*Email is Requried " : "Email is not valid"}}</span> -->
+                <div *ngIf="submitted && registerForm.controls.email.errors">
+                    <span *ngIf="submitted && registerForm.controls.email.errors.required">*Email is Requried</span>
+                    <span *ngIf="submitted && registerForm.controls.email.errors.pattern">*Email is Not Valid</span>
+               </div>
                 <input 
                 type="text"
-                class="block border border-grey-light w-full p-3 rounded mb-4"
-                name="email"
-                required
-                ngModel
-                email
-                #email="ngModel"
+                formControlName="email"
+                class="form-control mb-4"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls.email.errors }"
                 placeholder="Email" />
-                <span *ngIf="password.touched && password.invalid">*Password Is required</span>
+             
 
+                <!-- <span *ngIf="password.touched && password.invalid">*Password Is required</span> -->
+                <div *ngIf="submitted && registerForm.controls.password.errors">
+                    <span *ngIf="submitted && registerForm.controls.password.errors.required">*Password is Requried</span>
+                    <span *ngIf="submitted && registerForm.controls.password.errors.minlength">*Password shuld be atleast 6 charcters</span>
+               </div>
             <input 
                 type="password"
-                class="block border border-grey-light w-full p-3 rounded mb-4"
-                name="password"
-                required
-                ngModel
-                #password="ngModel" 
+                formControlName="password" 
+                class="form-control mb-4"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls.password.errors }"
                 placeholder="Password" />
-            
-                <button [disabled]="User_Form.invalid" type="submit" class="inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Account</button>
+                <button  type="submit" class="inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Create Account</button>
                 <div *ngIf="success_msg" class="flex justify-center items-center">
                     <div class="spinner-border animate-spin inline-block mt-3 w-8 h-8 border-4 text-green-500 rounded-full" role="status">
                       <span class="visually-hidden">Loading...</span>

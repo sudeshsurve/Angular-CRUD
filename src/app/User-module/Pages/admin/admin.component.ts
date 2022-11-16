@@ -11,10 +11,10 @@ export class AdminComponent implements OnInit {
   constructor(private router : Router) { }
 
   ngOnInit(): void {
-    let localdata =  localStorage.getItem('token')
-    let  user = localdata && JSON.parse(localdata)
-    this.username = user.fullname
-    console.log(this.username);
+    // let localdata =  localStorage.getItem('token')
+    // let  user = localdata && JSON.parse(localdata)
+    // this.username = user.fullname
+    // console.log(this.username);
      
   }
   Logout(){

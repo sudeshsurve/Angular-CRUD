@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/data-type/UserdataType';
 import { UserService } from '../../user-service/user.service';
 
 @Component({
@@ -20,21 +21,21 @@ export class UserListComponent implements OnInit {
   remove_user(id:string){
    this.userservice.Remove_User(id).subscribe((res:any)=>{
     if(res){
-      console.log("delete" , id);
+      // console.log("delete" , id);
     this.get_user_data()
     }
    }) 
   }
-
-
-
   get_user_data(){
     this.userservice.Get_User().subscribe((res:any)=>{
-      console.log(res.body);
-        if(res){
+      if(res){
+          console.log(res);
           let array :any[] = res.body
           this.userList = array
         }
+    },(err)=>{
+      console.log(err.message);
+      
     })
   }
   }
