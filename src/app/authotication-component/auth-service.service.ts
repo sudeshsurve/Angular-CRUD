@@ -9,7 +9,7 @@ import { UserdataType } from '../../app/data-type/UserdataType';
 export class AuthServiceService {
    public eventememiter = new EventEmitter<boolean>(false)
  
-  // public API :string = 'http://localhost:4000/create_user_account'
+  // public API :string = 'http://localhost:5000/create_user_account'
   constructor(private http :HttpClient , private router : Router) { }
 
 
@@ -35,7 +35,7 @@ export class AuthServiceService {
   }
 
   Create_Account(body:UserdataType){
-    return this.http.post( 'http://localhost:4000/auth/signup/', body , {observe:'response'})
+    return this.http.post( 'http://localhost:4000/auth/sign-up/', body , {observe:'response'})
 }
 
   login(user_data:{email:string, password:string}){  

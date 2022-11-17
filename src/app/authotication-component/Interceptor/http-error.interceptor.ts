@@ -22,7 +22,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           Authorization: 'bearer '+ token
         }
        })
-
+       console.log(jwt);
     return next.handle(jwt).pipe(catchError((error)=>{
       if(error instanceof HttpErrorResponse){
         if(error.error instanceof ErrorEvent){

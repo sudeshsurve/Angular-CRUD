@@ -41,7 +41,7 @@ if(this.registerForm.invalid){
         this.router.navigate(['/login'])
       }, 2000);
     }
-  },(err)=>{
+  },(err)=>{  
     alert("user Already Exists")
   })
 }

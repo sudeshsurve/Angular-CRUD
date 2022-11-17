@@ -22,7 +22,7 @@ export class UserService   {
    }
     
    Get_User(){
-    return this.http.get(`${this.API}/all_users` , {observe:'response'})
+    return this.http.get(`${this.API}/all_users/` , {observe:'response'})
    }
 
    Update_user(body:User , id:string){
