@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CanDeactivateGuard } from 'src/app/guards/can-deactivate.guard';
+import { RoleauthGuard } from 'src/app/guards/roleauth.guard';
 import { AdminComponent } from '../Pages/admin/admin.component';
 import { ContactUsComponent } from '../Pages/contact-us/contact-us.component';
 import { DashbordComponent } from '../Pages/dashbord/dashbord.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
   {path:'' ,  redirectTo:'/Admin/Dashbord' , pathMatch:'full'},
   {path:'Dashbord' , component:DashbordComponent},
   {path:'user-form',canDeactivate:[CanDeactivateGuard] ,component:UserFormComponent},
-  {path:'user-list' , component:UserListComponent},
+  {path:'user-list' ,canActivate:[RoleauthGuard], component:UserListComponent},
   {path:'contact' ,canDeactivate:[CanDeactivateGuard] , component:ContactUsComponent},
   ],
 },

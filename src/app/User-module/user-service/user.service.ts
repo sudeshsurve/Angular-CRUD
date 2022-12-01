@@ -30,7 +30,7 @@ export class UserService   {
    }
     
    Get_Single_User(id:string){
-    // console.log(id);
+    // console.log(id); 
     return this.http.get(`${this.API}/` + id , {observe:'response'})
    }
 }

@@ -25,12 +25,13 @@ export class LoginComponent implements OnInit {
 this.activatedrout.queryParams.subscribe((res:any)=>{
   this.redirectUrl = res
   console.log(this.redirectUrl);
-  
 })
+
 
 if(this.Auth.isLoggedIn()){
   this.router.navigate(['/Admin'])
 } 
+
   }
 
   login_user(form:any){
@@ -41,13 +42,13 @@ if(!form.valid){
 else{
   this.Auth.login(form.value).subscribe((res:any)=>{
     if(res){
-      this.Auth.setToken(res.body.token)  
+      this.Auth.setToken(res.body.token) 
+      this.Auth.getRoletoken(res.body.token) 
       if(this.redirectUrl.redirectUrl){
         this.router.navigateByUrl(this.redirectUrl.redirectUrl)
       }else{
         this.router.navigate(['/Admin']) 
         }
-      
     }else{
       this.errmsg = true
     }
@@ -55,13 +56,11 @@ else{
     alert("invalid cradintial")
   })
 }
-
 if(this.errmsg){
   setTimeout(() => {
       this.errmsg = false
     }, 2000);
-}
-    
+}   
   }
 
 }

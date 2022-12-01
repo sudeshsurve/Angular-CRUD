@@ -7,10 +7,15 @@ import { UserdataType } from '../../app/data-type/UserdataType';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  public token_data :any
+   public role :string  =''
    public eventememiter = new EventEmitter<boolean>(false)
  
   // public API :string = 'http://localhost:5000/create_user_account'
-  constructor(private http :HttpClient , private router : Router) { }
+  constructor(private http :HttpClient , private router : Router) { 
+  
+    
+  }
 
 
 
@@ -40,8 +45,18 @@ export class AuthServiceService {
 
   login(user_data:{email:string, password:string}){  
  return  this.http.post('http://localhost:4000/auth/login/', user_data , {observe:'response'})
-
   }
+
+  getRoletoken(token :any){
+      let _token = token.split('.')[1]
+      this.token_data = JSON.parse(atob(_token))
+      this.role = this.token_data.role
+      localStorage.setItem('role' , JSON.stringify(this.role))
+  } 
+
+
+
+
 
 
 }

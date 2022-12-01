@@ -5,16 +5,16 @@
     <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
         <form [formGroup]="registerForm"  (ngSubmit)="onSubmit(registerForm.value)">
         <div class="bg-white px-6 py-8 rounded shadow-md text-black w-full">
-            <h1 class="mb-8 text-3xl text-center">Sign up</h1>
+            <h1 class="mb-8 text-3xl text-center">Register</h1>
             <!-- <span *ngIf="fullname.touched && fullname.invalid">*Name Is required</span> -->
-            <div *ngIf="submitted && registerForm.controls.fullName.errors">
-                <span *ngIf="submitted && registerForm.controls.fullName.errors.required">*Name is Requried</span>
+            <div *ngIf="submitted && registerForm.controls.firstName.errors">
+                <span *ngIf="submitted && registerForm.controls.firstName.errors.required">*Name is Requried</span>
            </div>
             <input 
                 type="text"
                 class="form-control mb-4"
-                formControlName="fullName"
-                [ngClass]="{'is-invalid':submitted && registerForm.controls.fullName.errors }"
+                formControlName="firstName"
+                [ngClass]="{'is-invalid':submitted && registerForm.controls.firstName.errors }"
                 placeholder="Full Name" />            
                 <!-- <span *ngIf="email.touched && email.invalid">{{email.touched?"*Email is Requried " : "Email is not valid"}}</span> -->
                 <div *ngIf="submitted && registerForm.controls.email.errors">
@@ -63,7 +63,7 @@
             Already have an account? 
             <a class="no-underline border-b border-blue text-blue" href="../login/">
                 Log in
-            </a>.
+            </a>
         </div>
     </div>
 </div>

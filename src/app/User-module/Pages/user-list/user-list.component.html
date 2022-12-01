@@ -10,13 +10,15 @@
             </button>
             <input type="search" [(ngModel)]="search" (keyup)="search_input()"   placeholder="Search" class="w-full pl-3 text-sm text-black outline-none focus:outline-none bg-transparent" />
           </div>
-          <button class="btn btn-primary" routerLink="/Admin/user-form">Add User</button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="adduserbtn()" >Add User</button>
         </div>      
     </div>
 
     <div class="w-full overflow-hidden rounded-lg shadow-xs">
       <div class="w-full overflow-x-auto">
-        <table class="w-full">
+
+        <h2 *ngIf="userList.length == 0">No user</h2>
+        <table *ngIf="userList.length >= 1" class="w-full">
 
           <thead>
             <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -41,18 +43,121 @@
               <td class="px-4 py-3 text-sm">{{item.state}}</td>
               <td class="px-4 py-3 text-sm">{{item.password}}</td>
               <td class="px-4 py-3 text-sm">{{item.zip}}</td>
-              <td class="p-4 px-3 d-flex"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" routerLink="/Admin/user-form" [queryParams]="{id:item._id}" >Edit</button>
+              <td class="p-4 px-3 d-flex"><button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal"  class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="onEdit(item._id)" >Edit</button>
                 <button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="remove_user(item._id)">Delete</button></td>
             </tr>
           </tbody>
         </table>
       </div>
      
+    </div>  
+  </div>
+
+<!-- <button type="button" class="btn btn-primary" >
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Form</h5>
+        <button  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #UserForm="ngForm"  (ngSubmit)="User_Submit()"  class="w-full max-w-lg ">
+       
+
+      <div *ngIf="error_msg"  class=" bg-red-100 rounded-md p-1 flex">
+        <svg
+            class="stroke-2 stroke-current text-red-600 h-8 w-8 mr-2 flex-shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M0 0h24v24H0z" stroke="none" />
+            <circle cx="12" cy="12" r="9" />
+            <path d="M9 12l2 2 4-4" />
+        </svg>
+    
+        <div class="text-red-700">
+            <div class="font-bold text-xl">All input field required</div>
+    
+            <!-- <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut facilisis sollicitudin dui vel gravida. Fusce faucibus, elit sit amet porttitor vehicula, urna nisi dapibus tellus, a tincidunt velit mi quis nulla.</div> -->
+        </div>
+    </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                  First Name
+                </label>
+                <input name="firstName" #firstName="ngModel" ngModel  required  [(ngModel)]="firstname" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="First Name">
+                <p *ngIf="UserForm.touched && UserForm.invalid" class="text-red-500 text-xs italic">Please fill out this field.</p>
+              </div>
+              <div class="w-full md:w-1/2 px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
+                  Last Name
+                </label>
+                <input name="lastName" #lastName="ngModel" ngModel  [(ngModel)]="lastname"  required  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="last Name">
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-6">
+              <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                  Password
+                </label>
+                <input name="password" #password="ngModel" ngModel  required [(ngModel)]="user_password"   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
+                <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap -mx-3 mb-2">
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
+                  City
+                </label>
+                <input name="city" #city="ngModel" ngModel  required  [(ngModel)]="City"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                  State
+                </label>
+                <div class="relative">
+                  <select name="state" #state="ngModel" ngModel  required [(ngModel)]="State"  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                    <option>New Mexico</option>
+                    <option>Missouri</option>
+                    <option>Texas</option>
+                  </select>
+                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                  </div>
+                </div>
+              </div>
+              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
+                  Zip
+                </label>
+                <input name="zip" #zip="ngModel" ngModel  required [(ngModel)]="Zip" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
+              </div>
+            </div> 
+           
+        <button  [disabled]="UserForm.invalid"   type="submit" class="inline-block w-full px-6 py-3 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out mt-3">{{submited?'Update':'Submit'}}</button>        
+          </form>
+      </div>
+      <div class="modal-footer">
+        <!-- <button class="btn btn-primary" >Close</button> -->
+      </div>
     </div>
   </div>
+</div>
+
+
     </div>
   
     
    
+    <!-- Button trigger modal -->
+
 
 
