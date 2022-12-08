@@ -6,6 +6,7 @@ import { User } from "../../../app/data-type/UserdataType";
   providedIn: 'root'
 })
 export class UserService   {
+  public loding = new BehaviorSubject<boolean>(false)
   public User_list = new BehaviorSubject<any>([])
   public API :string ='http://localhost:4000/users'
 

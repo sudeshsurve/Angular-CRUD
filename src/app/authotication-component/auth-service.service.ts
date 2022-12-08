@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { catchError, of } from 'rxjs';
 import { UserdataType } from '../../app/data-type/UserdataType';
 
 @Injectable({
@@ -39,7 +40,7 @@ export class AuthServiceService {
 }
 
   login(user_data:{email:string, password:string}){  
- return  this.http.post('http://localhost:4000/auth/login/', user_data , {observe:'response'})
+ return  this.http.post('http://localhost:4000/auth/login/', user_data ).pipe(catchError(err=> of([])))
 
   }
 

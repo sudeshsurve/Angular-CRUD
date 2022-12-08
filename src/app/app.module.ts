@@ -13,6 +13,7 @@ import { ProfileComponent } from './authotication-component/profile/profile.comp
 import { FeturesComponent } from './authotication-component/fetures/fetures.component';
 import { HttpErrorInterceptor } from './authotication-component/Interceptor/http-error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
+import { LoderComponent } from './loder/loder.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     HeaderComponent,
     ProfileComponent,
     FeturesComponent,
+    LoderComponent,
    
 
   ],

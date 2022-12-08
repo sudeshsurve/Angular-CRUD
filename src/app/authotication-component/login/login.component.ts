@@ -39,9 +39,9 @@ if(!form.valid){
   console.log("form");
 }
 else{
-  this.Auth.login(form.value).subscribe((res:any)=>{
-    if(res){
-      this.Auth.setToken(res.body.token)  
+  this.Auth.login(form.value).subscribe((res:any)=>{    
+    if(res.token){
+      this.Auth.setToken(res.token)  
       if(this.redirectUrl.redirectUrl){
         this.router.navigateByUrl(this.redirectUrl.redirectUrl)
       }else{
@@ -49,8 +49,9 @@ else{
         }
       
     }else{
+      alert('Inavlid cradintial')
       this.errmsg = true
-    }
+    } 
   })
 }
 

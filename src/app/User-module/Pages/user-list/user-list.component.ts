@@ -33,9 +33,6 @@ export class UserListComponent implements OnInit {
           let array :any[] = res.body
           this.userList = array
         }
-    },(err)=>{
-      console.log(err.message);
-      
     })
   }
   }
