@@ -14,6 +14,7 @@ import { FeturesComponent } from './authotication-component/fetures/fetures.comp
 import { HttpErrorInterceptor } from './authotication-component/Interceptor/http-error.interceptor';
 import { ToastrModule } from 'ngx-toastr';
 import { LoderComponent } from './loder/loder.component';
+import { NgxUiLoaderModule  ,NgxUiLoaderHttpModule} from "ngx-ui-loader";
 
 @NgModule({
   declarations: [
@@ -35,14 +36,17 @@ import { LoderComponent } from './loder/loder.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule.forRoot({
+      showForeground :true
+    })
   ],
   providers: [
-
     {provide:HTTP_INTERCEPTORS,
       useClass :HttpErrorInterceptor,
       multi:true,
-  }
+  } 
     
   ],
   bootstrap: [AppComponent]

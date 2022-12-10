@@ -33,13 +33,14 @@
               <td class="px-4 py-3">
                <p>{{i + 1}}</p>
               </td> 
-              <td class="px-4 py-3 text-sm">{{item.firstName +' '+ item.lastName}}</td>
+              <td class="px-4 py-3 text-sm">{{item.firstname
+                +' '+ item.lastname}}</td>
               <td class="px-4 py-3 text-sm">
-                {{item.city}}
+                {{item.City}}
               </td>
-              <td class="px-4 py-3 text-sm">{{item.state}}</td>
+              <td class="px-4 py-3 text-sm">{{item.State}}</td>
               <td class="px-4 py-3 text-sm">{{item.password}}</td>
-              <td class="px-4 py-3 text-sm">{{item.zip}}</td>
+              <td class="px-4 py-3 text-sm">{{item.Zip}}</td>
               <td class="p-4 px-3 d-flex"><button type="button" class="mr-3 text-sm bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" routerLink="/Admin/user-form" [queryParams]="{id:item._id}" >Edit</button>
                 <button type="button" class="text-sm bg-red-500 hover:bg-red-700 text-white py-1 px-2 rounded focus:outline-none focus:shadow-outline" (click)="remove_user(item._id)">Delete</button></td>
             </tr>

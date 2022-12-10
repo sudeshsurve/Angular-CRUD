@@ -20,15 +20,10 @@ export class UserFormComponent implements  iDeactivatecomponrnt , OnInit  {
   City :string =''
   State :string =''
   Zip :string =''
-  user_password :string =''
-
+  password :string =''
   constructor(private userservise: UserService, private router: Router, private rout: ActivatedRoute) { }
-  
-  
   ngOnInit(): void {
     // this.CanExist()
-
-    
     this.rout.queryParams.subscribe((res: any) => {
       if (res.id) {
         this.obj = res
@@ -37,13 +32,13 @@ export class UserFormComponent implements  iDeactivatecomponrnt , OnInit  {
             if (res && res.body) {
               console.log('bodddy');
               this.form.setValue({
-                firstName: res.body.firstName,
-                lastName: res.body.lastName,
+                firstname: res.body.firstname,
+                lastname: res.body.lastname,
                 password: res.body.password,
-                city: res.body.city,
-                state: res.body.state,
-                zip: res.body.zip,
-              })
+                City: res.body.City,
+                State: res.body.State,
+                Zip: res.body.Zip,
+              })  
             }
 
           })
@@ -55,21 +50,21 @@ export class UserFormComponent implements  iDeactivatecomponrnt , OnInit  {
        this.error_msg = true
        console.log("invalid");
        
-       setTimeout(() => {
-        this.error_msg = undefined
-       }, 2000);
+      //  setTimeout(() => {
+      //   this.error_msg = undefined
+      //  }, 1000);
     }
     else{
       if (!this.obj.id) {
-        console.log('addvtton');
-        
+        console.log(this.form.value);
       this.userservise.Add_User(this.form.value).subscribe((res: any) => {
+        
         if (res && res.body) {
           this.success_msg = true
           setTimeout(() => {
             this.success_msg =undefined
              this.form.reset()
-          }, 2000);
+          }, 1000);
         }
       })
     }
@@ -80,7 +75,7 @@ export class UserFormComponent implements  iDeactivatecomponrnt , OnInit  {
           setTimeout(() => {
             this.update_msg =undefined
              this.form.reset()
-          }, 2000);
+          }, 1000);
         }
       },(error)=>{
         alert('you are not authorizes Please login')
@@ -88,19 +83,12 @@ export class UserFormComponent implements  iDeactivatecomponrnt , OnInit  {
       })
     } 
     }
-   
-
   }
-
-
   CanExit() {
-    if(this.firstname || this.lastname || this.City || this.State || this.user_password || this.Zip){
+    if(this.firstname || this.lastname || this.City || this.State || this.password || this.Zip){
       return confirm('Do You want To Discard Changes?')
     }else{
       return true
     }
-
   }
-
-
 }

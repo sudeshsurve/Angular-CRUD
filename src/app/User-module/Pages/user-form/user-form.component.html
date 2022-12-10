@@ -74,14 +74,14 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                           First Name
                         </label>
-                        <input name="firstName" #firstName="ngModel" ngModel  required  [(ngModel)]="firstname" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="First Name">
+                        <input name="firstname" #firstName="ngModel" ngModel  required  [(ngModel)]="firstname" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="First Name">
                         <p *ngIf="UserForm.touched && UserForm.invalid" class="text-red-500 text-xs italic">Please fill out this field.</p>
                       </div>
                       <div class="w-full md:w-1/2 px-3">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                           Last Name
                         </label>
-                        <input name="lastName" #lastName="ngModel" ngModel  [(ngModel)]="lastname"  required  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="last Name">
+                        <input name="lastname" #lastName="ngModel" ngModel  [(ngModel)]="lastname"  required  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-last-name" type="text" placeholder="last Name">
                       </div>
                     </div>
                     <div class="flex flex-wrap -mx-3 mb-6">
@@ -89,7 +89,7 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
                           Password
                         </label>
-                        <input name="password" #password="ngModel" ngModel  required [(ngModel)]="user_password"   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
+                        <input name="password" #Password="ngModel" ngModel  required [(ngModel)]="password"   class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-password" type="password" placeholder="******************">
                         <p class="text-gray-600 text-xs italic">Make it as long and as crazy as you'd like</p>
                       </div>
                     </div>
@@ -98,14 +98,14 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-city">
                           City
                         </label>
-                        <input name="city" #city="ngModel" ngModel  required  [(ngModel)]="City"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
+                        <input name="City" #city="ngModel" ngModel  required  [(ngModel)]="City"  class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-city" type="text" placeholder="Albuquerque">
                       </div>
                       <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
                           State
                         </label>
                         <div class="relative">
-                          <select name="state" #state="ngModel" ngModel  required [(ngModel)]="State"  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+                          <select name="State" #state="ngModel" ngModel  required [(ngModel)]="State"  class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
                             <option>New Mexico</option>
                             <option>Missouri</option>
                             <option>Texas</option>
@@ -119,7 +119,7 @@
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip">
                           Zip
                         </label>
-                        <input name="zip" #zip="ngModel" ngModel  required [(ngModel)]="Zip" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
+                        <input name="Zip" #zip="ngModel" ngModel  required [(ngModel)]="Zip" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
                       </div>
                     </div> 
                    

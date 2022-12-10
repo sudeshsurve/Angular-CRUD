@@ -36,11 +36,11 @@ export class AuthServiceService {
   }
 
   Create_Account(body:UserdataType){
-    return this.http.post( 'http://localhost:4000/auth/signup/', body , {observe:'response'})
+    return this.http.post( 'https://mongoose-app.onrender.com/api/auth/sign-up/', body , {observe:'response'})
 }
 
   login(user_data:{email:string, password:string}){  
- return  this.http.post('http://localhost:4000/auth/login/', user_data ).pipe(catchError(err=> of([])))
+ return  this.http.post('https://mongoose-app.onrender.com/api/auth/login/', user_data ).pipe(catchError(err=> of([])))
 
   }
 
